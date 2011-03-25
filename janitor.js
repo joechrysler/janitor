@@ -21,7 +21,7 @@
 //=================================================================+
   zmJanitor.prototype._displayDialog = function() {
     var username    = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
-    var jspUrl      = this.getResource("2.jsp") + "?username=" + username;
+    var jspUrl      = this.getResource("3.jsp") + "?username=" + username;
     var callback    = new AjxCallback(this, this._rpcCallback, ["username"]);
 
     AjxRpc.invoke(null, jspUrl, null, callback, true);
@@ -32,7 +32,7 @@
 //   the first line of output is old emails, second is old unreads
 //=================================================================+
 zmJanitor.prototype._rpcCallback = function(p1, response) {
-  var answer      = response.text.split();
+  var answer      = response.text.split(" ");
   var oldEmails   = answer[0];
   var oldUnreads  = answer[1];
   var message     = "You have " + oldEmails + " emails that are almost a year old.<br />"
@@ -56,4 +56,5 @@ zmJanitor.prototype._rpcCallback = function(p1, response) {
   if (oldEmails == 0 && oldUnreads == 0) {
     appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);
   }
-};
+}
+

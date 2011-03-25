@@ -79,8 +79,7 @@ try {
     om_result = "5";
     ou_result = "2";
 
-    output.println(om_result);
-    output.println(ou_result);
+    output.println(om_result + " " + ou_result);
 
 
 } catch (Exception e) {} 
