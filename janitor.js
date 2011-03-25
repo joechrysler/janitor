@@ -56,5 +56,5 @@ zmJanitor.prototype._rpcCallback = function(p1, response) {
   /*appCtxt.getAppController().setStatusMsg("Hello");*/
   /*if (oldEmails != 0 && oldUnreads != 0) {*/
   /*appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);*/
-  }
+  /*}*/
 }
