@@ -1,5 +1,4 @@
-<%@ page language="java" import="java.io.*, javax.naming.*, javax.naming.directory.*, java.util.*"%>
-<%@ include file="config.jsp" %>
+<%@ page language="java" import="java.io.*, java.text.*, java.util.*"%>
 <%
 //=================================================================+
 // Search Zimbra for a given user's old emails
