@@ -53,7 +53,7 @@ zmJanitor.prototype._rpcCallback = function(p1, response) {
                           ZmToast.FADE_OUT];
 
     appCtxt.getAppController().setStatusMsg("Hello");
-  if (oldEmails == 0 && oldUnreads == 0) {
+  if (oldEmails != 0 && oldUnreads != 0) {
     appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);
   }
 }
