@@ -1,0 +1,4 @@
+<zimlet name="com_zimbra_janitor" version="1.0" description="Show users how many old emails they have">
+  <include>janitor.js</include>
+  <handlerObject>zmJanitor</handlerObject>
+</zimlet>
