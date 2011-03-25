@@ -32,28 +32,29 @@
 //   the first line of output is old emails, second is old unreads
 //=================================================================+
 zmJanitor.prototype._rpcCallback = function(p1, response) {
-  var answer      = response.text.split(" ");
-  var oldEmails   = answer[0];
-  var oldUnreads  = answer[1];
-  var message     = "You have " + oldEmails + " emails that are almost a year old.<br />"
-                  + "and " + oldUnreads + " unread emails that are almost 3 months old.<br />"
-                  + "To conserve space, we will be automatically deleting these messages<br />"
-                  + "within the next couple of weeks.  Save any important messages to your<br />"
-                  + "own PC some time this week.";
+  appCtxt.getAppController().setStatusMsg(response.text);
+  /*var answer      = response.text.split(" ");*/
+  /*var oldEmails   = answer[0];*/
+  /*var oldUnreads  = answer[1];*/
+  /*var message     = "You have " + oldEmails + " emails that are almost a year old.<br />"*/
+  /*+ "and " + oldUnreads + " unread emails that are almost 3 months old.<br />"*/
+  /*+ "To conserve space, we will be automatically deleting these messages<br />"*/
+  /*+ "within the next couple of weeks.  Save any important messages to your<br />"*/
+  /*+ "own PC some time this week.";*/
 
-  var warningAnimation = [ZmToast.FADE_IN,
-                          ZmToast.PAUSE,
-                          ZmToast.PAUSE,
-                          ZmToast.PAUSE,
-                          ZmToast.PAUSE,
-                          ZmToast.PAUSE,
-                          ZmToast.PAUSE,
-                          ZmToast.PAUSE,
-                          ZmToast.PAUSE,
-                          ZmToast.FADE_OUT];
+  /*var warningAnimation = [ZmToast.FADE_IN,*/
+  /*ZmToast.PAUSE,*/
+  /*ZmToast.PAUSE,*/
+  /*ZmToast.PAUSE,*/
+  /*ZmToast.PAUSE,*/
+  /*ZmToast.PAUSE,*/
+  /*ZmToast.PAUSE,*/
+  /*ZmToast.PAUSE,*/
+  /*ZmToast.PAUSE,*/
+  /*ZmToast.FADE_OUT];*/
 
-    appCtxt.getAppController().setStatusMsg("Hello");
-  if (oldEmails != 0 && oldUnreads != 0) {
-    appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);
+  /*appCtxt.getAppController().setStatusMsg("Hello");*/
+  /*if (oldEmails != 0 && oldUnreads != 0) {*/
+  /*appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);*/
   }
 }
