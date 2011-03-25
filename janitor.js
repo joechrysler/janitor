@@ -24,7 +24,7 @@
     var jspUrl      = this.getResource("3.jsp") + "?username=" + username;
     var callback    = new AjxCallback(this, this._rpcCallback, ["username"]);
 
-    AjxRpc.invoke(null, jspUrl, null, callback, true);
+    AjxRpc.invoke(null, jspUrl, null, callback, true, 60*1000);
   };
 
 
@@ -57,4 +57,3 @@ zmJanitor.prototype._rpcCallback = function(p1, response) {
     appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);
   }
 }
-
