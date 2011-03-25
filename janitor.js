@@ -32,7 +32,7 @@
 //   the first line of output is old emails, second is old unreads
 //=================================================================+
 zmJanitor.prototype._rpcCallback = function(p1, response) {
-  appCtxt.getAppController().setStatusMsg(response.text);
+  appCtxt.getAppController().setStatusMsg(response.success + "<br />" + response.text);
   /*var answer      = response.text.split(" ");*/
   /*var oldEmails   = answer[0];*/
   /*var oldUnreads  = answer[1];*/
