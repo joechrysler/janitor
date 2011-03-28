@@ -22,16 +22,18 @@
   zmJanitor.prototype._displayDialog = function() {
     var username    = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
     var jspUrl      = this.getResource("9.jsp") + "?username=" + username;
-    var callback    = new AjxCallback(this, this._rpcCallback, ["username"]);
+    /*var callback    = new AjxCallback(this, this._rpcCallback,
+     * ["username"]);*/
 
-    AjxRpc.invoke(null, jspUrl, null, callback, true, 60*1000);
+    window.response = AjxRpc.invoke(null, jspUrl, null, callback, true, 60*100000000);
+    this._rpcCallback();
   };
 
 
 // Check the AJAX result
 //   the first line of output is old emails, second is old unreads
 //=================================================================+
-zmJanitor.prototype._rpcCallback = function(p1, response) {
+zmJanitor.prototype._rpcCallback = function() {
   /*appCtxt.getAppController().setStatusMsg(response.success + "<br />" + response.text);*/
 
   var style = DwtMessageDialog.INFO_STYLE;
