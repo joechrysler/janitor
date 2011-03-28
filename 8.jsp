@@ -65,7 +65,7 @@ try {
   // Run zimbra mailbox commands  --  still no Java api ='(
   //=================================================================+
     om_process  = Runtime.getRuntime().exec(om_command);
-    ou_process  = Runtime.getRuntime().exec(ou_command);
+    //ou_process  = Runtime.getRuntime().exec(ou_command);
 
     if (om_process.waitFor() == 0) {
       rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
@@ -75,15 +75,15 @@ try {
       out.println("om failed");
     }
 
-    if (ou_process.waitFor() == 0) {
+   /* if (ou_process.waitFor() == 0) {
       rawOutput = new BufferedReader(new InputStreamReader(ou_process.getInputStream()));
       firstLineOfOutput = rawOutput.readLine();
       ou_result = firstLineOfOutput.split(". ")[1];
     } else {
       out.println("ou failed");
-    }
+    }*/
 
-    output.println(om_result + " Buffer  " + ou_result);
+    output.println(om_result + " Buffer  ");
 
 
 } catch (Exception e) {
