@@ -64,8 +64,8 @@ try {
 
   // Run zimbra mailbox commands  --  still no Java api ='(
   //=================================================================+
-    om_process  = Runtime.getRuntime().exec("pwd");
-    ou_process  = Runtime.getRuntime().exec("ls -l");
+    om_process  = Runtime.getRuntime().exec(om_command);
+    ou_process  = Runtime.getRuntime().exec(ou_command);
 
     if (om_process.waitFor() == 0) {
       rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
