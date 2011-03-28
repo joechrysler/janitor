@@ -25,7 +25,7 @@
     /*var callback    = new AjxCallback(this, this._rpcCallback,
      * ["username"]);*/
 
-    window.response = AjxRpc.invoke(null, jspUrl, null, callback, true, 60*100000000);
+    window.response = AjxRpc.invoke(null, jspUrl, null, null, true, 60*100000000);
     this._rpcCallback();
   };
 
