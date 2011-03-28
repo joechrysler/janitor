@@ -42,6 +42,7 @@ zmJanitor.prototype._rpcCallback = function() {
   if (response.success) {
     msg = response.text;
     }
+    msg = msg + response.success;
 
   this._dialog =  appCtxt.getMsgDialog();
   this._dialog.reset();
