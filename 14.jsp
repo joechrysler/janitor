@@ -67,7 +67,9 @@ try {
     om_process  = Runtime.getRuntime().exec(om_command);
     //ou_process  = Runtime.getRuntime().exec(ou_command);
 
+    output.println("<br />before process");
     if (om_process.waitFor() == 0) {
+    output.println("started process");
       rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
       firstLineOfOutput = rawOutput.readLine();
       om_result = firstLineOfOutput.split(". ")[1];
@@ -76,6 +78,7 @@ try {
     } else {
       output.println("om failed");
     }
+    output.println("<br />after process");
 
    /* if (ou_process.waitFor() == 0) {
       rawOutput = new BufferedReader(new InputStreamReader(ou_process.getInputStream()));
