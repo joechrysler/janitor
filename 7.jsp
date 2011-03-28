@@ -40,7 +40,7 @@ try {
 
   // Testing block  --  remove
   //=================================================================+
-    output.println("Hello?");
+    //output.println("Hello?");
 
   // Write zimbra mailbox commands  --  no Java api =(
   //=================================================================+
@@ -83,10 +83,10 @@ try {
       out.println("ou failed");
     }
 
-    output.println(om_result + " " + ou_result);
+    output.println(om_result + " Buffer  " + ou_result);
 
 
 } catch (Exception e) {
-  e.printStackTrace();
+  //e.printStackTrace();
 } 
 %>
