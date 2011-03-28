@@ -37,6 +37,9 @@ zmJanitor.prototype._rpcCallback = function(p1, response) {
   var style = DwtMessageDialog.INFO_STYLE;
   var msg   = "Hello world!";
 
+  if (response.success) {
+    msg = response.text;
+    }
 
   this._dialog =  appCtxt.getMsgDialog();
   this._dialog.reset();
