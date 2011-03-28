@@ -11,7 +11,7 @@
 try {
   // Bucket of Objects  --  thank you Java
   //=================================================================+
-    //PrintWriter           output                = response.getWriter();
+    PrintWriter           output                = response.getWriter();
     String                username              = request.getParameter("username");
     String                result                = "";
     Calendar              calendar              = Calendar.getInstance();
@@ -72,9 +72,9 @@ try {
       firstLineOfOutput = rawOutput.readLine();
       om_result = firstLineOfOutput.split(". ")[1];
       om_result = "7";
-      out.println(om_result);
+      output.println(om_result);
     } else {
-      out.println("om failed");
+      output.println("om failed");
     }
 
    /* if (ou_process.waitFor() == 0) {
