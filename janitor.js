@@ -21,7 +21,7 @@
 //=================================================================+
   zmJanitor.prototype._displayDialog = function() {
     var username    = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
-    var jspUrl      = this.getResource("14.jsp") + "?username=" + username;
+    var jspUrl      = this.getResource("15.jsp") + "?username=" + username;
     /*var callback    = new AjxCallback(this, this._rpcCallback,
      * ["username"]);*/
 

@@ -64,6 +64,8 @@ try {
 
   // Run zimbra mailbox commands  --  still no Java api ='(
   //=================================================================+
+    output.println(om_command);
+    output.println("<br /> before invoking");
     om_process  = Runtime.getRuntime().exec(om_command);
     //ou_process  = Runtime.getRuntime().exec(ou_command);
 
