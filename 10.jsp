@@ -71,6 +71,7 @@ try {
       rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
       firstLineOfOutput = rawOutput.readLine();
       om_result = firstLineOfOutput.split(". ")[1];
+      output.println(om_result);
     } else {
       out.println("om failed");
     }
@@ -83,7 +84,7 @@ try {
       out.println("ou failed");
     }*/
 
-    output.println(om_result + " Buffer  ");
+    //output.println(om_result + " Buffer  ");
 
 
 } catch (Exception e) {
