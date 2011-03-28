@@ -32,7 +32,16 @@
 //   the first line of output is old emails, second is old unreads
 //=================================================================+
 zmJanitor.prototype._rpcCallback = function(p1, response) {
-  appCtxt.getAppController().setStatusMsg(response.success + "<br />" + response.text);
+  /*appCtxt.getAppController().setStatusMsg(response.success + "<br />" + response.text);*/
+
+  var style = DwtMessageDialog.INFO_STYLE;
+  var msg   = "Hello world!";
+
+
+  this._dialog =  appCtxt.getMsgDialog();
+  this._dialog.reset();
+  this._dialog.setMessage(msg, style);
+  this._dialog.popup();
   /*var answer      = response.text.split(" ");*/
   /*var oldEmails   = answer[0];*/
   /*var oldUnreads  = answer[1];*/
