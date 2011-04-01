@@ -73,9 +73,10 @@
       om_process  = Runtime.getRuntime().exec(cmd);
       om_process.waitFor();
       output.println(cmd[0] + " returned " + om_process.exitValue());
-    } catch (Exception e) {
-      output.println("error executing " + cmd[0]);
-      output.println(e);
+    } catch (throwable t) {
+      t.printStackTrace();
+     //output.println("error executing " + cmd[0]);
+     //output.println(e);
     }
       //ou_process  = Runtime.getRuntime().exec(ou_command);
 
