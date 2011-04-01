@@ -12,8 +12,21 @@
   function zmJanitor() {} 
   zmJanitor.prototype               = new ZmZimletBase();
   zmJanitor.prototype.constructor   = zmJanitor;
-  zmJanitor.prototype.init          = function() { this._displayDialog(); };
+  zmJanitor.prototype.init          = function() { this._doJson(); };
 
+
+zmJanitor.prototype._doJson = function() {
+  this._submitSOAPRequestJSON();
+};
+
+zmJanitor.prototype._submitSOAPRequestJSON = function() {
+  /*var jsonObj = {GetAccountInfoRequest:{_jsns:"urn:zimbraAccount"}};*/
+  /*var request = jsonObj.GetAccountInfoRequest;*/
+  /*request.account = {_content: appCtxt.getUsername(), by: "name"};*/
+
+  var msgArray = appCtxt.getCurrentController().getList().getArray();
+  appCtxt.getAppController().setStatusMsg(msgArray);
+};
 
 // Send AJAX request
 //   zimbra stores usernames with @domain, ldap stores them without
