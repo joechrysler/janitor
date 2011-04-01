@@ -8,7 +8,6 @@
 //   in  March 2011
 //=================================================================+
 
-try {
   // Bucket of Objects  --  thank you Java
   //=================================================================+
     PrintWriter           output                = response.getWriter();
@@ -67,30 +66,32 @@ try {
   // Run zimbra mailbox commands  --  still no Java api ='(
   //=================================================================+
     //om_command = "pwd";
-    output.println(cmd);
+    output.println(cmd[0]);
     output.println("<br /> before invoking");
-    } catch (Exception e) { e.printStackTrace(); }
     try {
-      Process om_process  = Runtime.getRuntime().exec(cmd);
+      om_process  = Runtime.getRuntime().exec(cmd);
+      om_process.waitFor();
+    } catch (Exception e) {
+      output.println("error executing " + cmd[0]);
+      output.println(e);
+    }
       //ou_process  = Runtime.getRuntime().exec(ou_command);
 
       output.println("<br />before process");
       int lazy = om_process.waitFor();
       if (lazy == 0) {
       output.println("started process");
-        BufferedReader rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
-        String firstLineOfOutput = rawOutput.readLine();
+        rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
+        firstLineOfOutput = rawOutput.readLine();
         //om_result = firstLineOfOutput.split(". ")[1];
-        String om_result = firstLineOfOutput;
+        om_result = firstLineOfOutput;
         //om_result = "7";
         output.println(om_result);
       } else {
         output.println("om failed");
       }
       output.println("<br />after process");
-    } catch (Exception e) {
-      output.println("error executing " + cmd[0]);
-    }
+    //  output.println("error executing " + cmd[0]);
     output.println(cmd[0] + " returned " + om_process.exitValue());
 
    /* if (ou_process.waitFor() == 0) {
