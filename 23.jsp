@@ -48,7 +48,7 @@ try {
                         + "search -t message "
                         + "-l 9999 ";
 
-    String cmd[] = {"/opt/zimbra/bin/zmmailbox", "-z", "-m " + username, "search", "-t message", "-l 9999"}
+    String cmd[] = {"/opt/zimbra/bin/zmmailbox", "-z", "-m " + username, "search", "-t message", "-l 9999"};
     
 
     om_command  = baseCommand
