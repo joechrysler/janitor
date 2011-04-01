@@ -51,8 +51,8 @@ try {
     om_command  = baseCommand
                         + "'before:" + oneYearAgo + " "
                         + "not in:/Trash "
-                        + "not from:" + username + "' "
-                        + "| grep num:";
+                        + "not from:" + username + "' ";
+                        + "
 
     ou_command   = baseCommand
                         + "'is:unread "
