@@ -65,7 +65,7 @@ zmJanitor.prototype._rpcCallback = function(response) {
 
   this._dialog =  appCtxt.getMsgDialog();
   this._dialog.reset();
-  this._dialog.setMessage(msg, style);
+  this._dialog.setMessage(message, style);
   this._dialog.popup();
 
   var warningAnimation = [ZmToast.FADE_IN,
