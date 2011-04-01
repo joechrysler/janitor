@@ -84,7 +84,7 @@
       t.printStackTrace();
     }
     try {
-      ou_process  = Runtime.getRuntime().exec(ou_coumand);
+      ou_process  = Runtime.getRuntime().exec(ou_command);
       ou_process.waitFor();
       rawOutput = new BufferedReader(new InputStreamReader(ou_process.getInputStream()));
       firstLineOfOutput = rawOutput.readLine();
