@@ -52,7 +52,6 @@ try {
                         + "'before:" + oneYearAgo + " "
                         + "not in:/Trash "
                         + "not from:" + username + "' ";
-                        + "
 
     ou_command   = baseCommand
                         + "'is:unread "
