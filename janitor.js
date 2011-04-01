@@ -25,7 +25,11 @@ zmJanitor.prototype._submitSOAPRequestJSON = function() {
   /*request.account = {_content: appCtxt.getUsername(), by: "name"};*/
 
   var msgArray = appCtxt.getCurrentController().getList().getArray();
-  appCtxt.getAppController().setStatusMsg(msgArray);
+  var messages = "";
+  for (var bob in msgArray) {
+    messages = messages + " " + bob;
+  }
+  appCtxt.getAppController().setStatusMsg(bob);
 };
 
 // Send AJAX request
