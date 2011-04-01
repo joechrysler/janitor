@@ -10,6 +10,7 @@
 
   // Bucket of Objects  --  thank you Java
   //=================================================================+
+  try {
     PrintWriter           output                = response.getWriter();
     String                username              = request.getParameter("username");
     String                result                = "";
@@ -106,6 +107,6 @@
 
 
 } catch (Exception e) {
-  //e.printStackTrace();
+  e.printStackTrace();
 } 
 %>
