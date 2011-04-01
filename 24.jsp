@@ -71,17 +71,17 @@ try {
     output.println("<br /> before invoking");
     } catch (Exception e) { e.printStackTrace(); }
     try {
-      om_process  = Runtime.getRuntime().exec(om_command);
+      Process om_process  = Runtime.getRuntime().exec(cmd);
       //ou_process  = Runtime.getRuntime().exec(ou_command);
 
       output.println("<br />before process");
       int lazy = om_process.waitFor();
       if (lazy == 0) {
       output.println("started process");
-        rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
-        firstLineOfOutput = rawOutput.readLine();
+        BufferedReader rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
+        String firstLineOfOutput = rawOutput.readLine();
         //om_result = firstLineOfOutput.split(". ")[1];
-        om_result = firstLineOfOutput;
+        String om_result = firstLineOfOutput;
         //om_result = "7";
         output.println(om_result);
       } else {
