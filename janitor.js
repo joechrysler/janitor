@@ -47,7 +47,7 @@ zmJanitor.prototype._rpcCallback = function(response) {
   /*this._dialog.setMessage(msg, style);*/
   /*this._dialog.popup();*/
 
-  var answer      = response.text.split(" ");
+  var answer      = response.text.split("\n");
   var oldEmails   = answer[0];
   var oldUnreads  = answer[1];
   var message     = "You have " + oldEmails + " emails that are almost a year old.<br />"
