@@ -70,12 +70,14 @@ try {
     //ou_process  = Runtime.getRuntime().exec(ou_command);
 
     output.println("<br />before process");
-    if (om_process.waitFor() == 0) {
+    int lazy = om_process.waitFor();
+    if (lazy == 0) {
     output.println("started process");
       rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
       firstLineOfOutput = rawOutput.readLine();
-      om_result = firstLineOfOutput.split(". ")[1];
-      om_result = "7";
+      //om_result = firstLineOfOutput.split(". ")[1];
+      om_result = firstLineOfOutput;
+      //om_result = "7";
       output.println(om_result);
     } else {
       output.println("om failed");
