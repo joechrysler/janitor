@@ -48,6 +48,9 @@ try {
                         + "search -t message "
                         + "-l 9999 ";
 
+    String cmd[] = {"/opt/zimbra/bin/zmmailbox", "-z", "-m " + username, "search", "-t message", "-l 9999"}
+    
+
     om_command  = baseCommand
                         + "'before:" + oneYearAgo + " "
                         + "not in:/Trash "
@@ -64,25 +67,31 @@ try {
   // Run zimbra mailbox commands  --  still no Java api ='(
   //=================================================================+
     //om_command = "pwd";
-    output.println(om_command);
+    output.println(cmd);
     output.println("<br /> before invoking");
-    om_process  = Runtime.getRuntime().exec(om_command);
-    //ou_process  = Runtime.getRuntime().exec(ou_command);
+    } catch (Exception e) { e.printStackTrace(); }
+    try {
+      om_process  = Runtime.getRuntime().exec(om_command);
+      //ou_process  = Runtime.getRuntime().exec(ou_command);
 
-    output.println("<br />before process");
-    int lazy = om_process.waitFor();
-    if (lazy == 0) {
-    output.println("started process");
-      rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
-      firstLineOfOutput = rawOutput.readLine();
-      //om_result = firstLineOfOutput.split(". ")[1];
-      om_result = firstLineOfOutput;
-      //om_result = "7";
-      output.println(om_result);
-    } else {
-      output.println("om failed");
+      output.println("<br />before process");
+      int lazy = om_process.waitFor();
+      if (lazy == 0) {
+      output.println("started process");
+        rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
+        firstLineOfOutput = rawOutput.readLine();
+        //om_result = firstLineOfOutput.split(". ")[1];
+        om_result = firstLineOfOutput;
+        //om_result = "7";
+        output.println(om_result);
+      } else {
+        output.println("om failed");
+      }
+      output.println("<br />after process");
+    } catch (Exception e) {
+      output.println("error executing " + cmd[0]);
     }
-    output.println("<br />after process");
+    output.println(cmd[0] + " returned " + om_process.exitValue());
 
    /* if (ou_process.waitFor() == 0) {
       rawOutput = new BufferedReader(new InputStreamReader(ou_process.getInputStream()));
