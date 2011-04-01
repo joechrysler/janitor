@@ -44,7 +44,7 @@ try {
 
   // Write zimbra mailbox commands  --  no Java api =(
   //=================================================================+
-    baseCommand         = "zmmailbox -z -m " + username + " "
+    baseCommand         = "/opt/zimbra/bin/zmmailbox -z -m " + username + " "
                         + "search -t message "
                         + "-l 9999 ";
 
