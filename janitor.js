@@ -56,6 +56,19 @@ zmJanitor.prototype._rpcCallback = function() {
     + "within the next couple of weeks.  Save any important messages to your<br />"
     + "own PC some time this week.";
 
+  var style = DwtMessageDialog.INFO_STYLE;
+  var msg   = "Hello world!";
+
+  if (response.success) {
+    msg = response.text;
+  }
+  msg = msg + response.success;
+
+  this._dialog =  appCtxt.getMsgDialog();
+  this._dialog.reset();
+  this._dialog.setMessage(msg, style);
+  this._dialog.popup();
+
   var warningAnimation = [ZmToast.FADE_IN,
       ZmToast.PAUSE,
       ZmToast.PAUSE,
