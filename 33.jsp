@@ -50,8 +50,8 @@
                         + "search -t message "
                         + "-l 9999 ";
 
-    om_filter   = "before:" + oneYearAgo + " not in:/Trash";
-    ou_filter   = "is:unread before:" + ninetyDaysAgo + " not in:/Trash";
+    om_filter   = "before:" + oneYearAgo + " not in:/Trash not from:" + username;
+    ou_filter   = "is:unread before:" + ninetyDaysAgo + " not in:/Trash not from:" + username;
 
     om_command  = new String[] {"/opt/zimbra/bin/zmmailbox",
                                 "-z",
