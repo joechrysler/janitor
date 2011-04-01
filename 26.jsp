@@ -77,22 +77,22 @@
     }
       //ou_process  = Runtime.getRuntime().exec(ou_command);
 
-      output.println("<br />before process");
-      int lazy = om_process.waitFor();
-      if (lazy == 0) {
-      output.println("started process");
-        rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
-        firstLineOfOutput = rawOutput.readLine();
-        //om_result = firstLineOfOutput.split(". ")[1];
-        om_result = firstLineOfOutput;
-        //om_result = "7";
-        output.println(om_result);
-      } else {
-        output.println("om failed");
-      }
-      output.println("<br />after process");
-    //  output.println("error executing " + cmd[0]);
-    output.println(cmd[0] + " returned " + om_process.exitValue());
+//      output.println("<br />before process");
+ //     int lazy = om_process.waitFor();
+ //     if (lazy == 0) {
+ //     output.println("started process");
+ //       rawOutput = new BufferedReader(new InputStreamReader(om_process.getInputStream()));
+ //       firstLineOfOutput = rawOutput.readLine();
+ //       //om_result = firstLineOfOutput.split(". ")[1];
+ //       om_result = firstLineOfOutput;
+ //       //om_result = "7";
+ //       output.println(om_result);
+ //     } else {
+ //       output.println("om failed");
+ //     }
+ //     output.println("<br />after process");
+ //   //  output.println("error executing " + cmd[0]);
+ //   output.println(cmd[0] + " returned " + om_process.exitValue());
 
    /* if (ou_process.waitFor() == 0) {
       rawOutput = new BufferedReader(new InputStreamReader(ou_process.getInputStream()));
