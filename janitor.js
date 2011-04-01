@@ -47,7 +47,7 @@ zmJanitor.prototype._rpcCallback = function(response) {
   /*this._dialog.setMessage(msg, style);*/
   /*this._dialog.popup();*/
 
-  var answer      = response.text.split("\n");
+  var answer      = response.text.split(" ");
   var oldEmails   = answer[0];
   var oldUnreads  = answer[1];
   var message     = "You have " + oldEmails + " emails that are almost a year old.<br />"
@@ -62,7 +62,6 @@ zmJanitor.prototype._rpcCallback = function(response) {
   if (response.success) {
     msg = response.text;
   }
-  msg = msg + response.success;
 
   this._dialog =  appCtxt.getMsgDialog();
   this._dialog.reset();
@@ -80,7 +79,6 @@ zmJanitor.prototype._rpcCallback = function(response) {
       ZmToast.PAUSE,
       ZmToast.FADE_OUT];
 
-  appCtxt.getAppController().setStatusMsg("Hello");
   if (oldEmails != 0 && oldUnreads != 0) {
     appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);
   }
