@@ -94,16 +94,6 @@
       t.printStackTrace();
     }
 
-   /* if (ou_process.waitFor() == 0) {
-      rawOutput = new BufferedReader(new InputStreamReader(ou_process.getInputStream()));
-      firstLineOfOutput = rawOutput.readLine();
-      ou_result = firstLineOfOutput.split(". ")[1];
-    } else {
-      out.println("ou failed");
-    }*/
-
-    //output.println(om_result + " Buffer  ");
-
 
 } catch (Exception e) {
   e.printStackTrace();
