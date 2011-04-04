@@ -40,9 +40,6 @@
     calendar.add(Calendar.DATE, -1);
     oneYearAgo = dateFormat.format(calendar.getTime());
 
-  // Testing block  --  remove
-  //=================================================================+
-    //output.println("Hello?");
 
   // Write zimbra mailbox commands  --  no Java api =(
   //=================================================================+
