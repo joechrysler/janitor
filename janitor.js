@@ -15,23 +15,6 @@
   zmJanitor.prototype.init          = function() { this._displayDialog(); };
 
 
-zmJanitor.prototype._doJson = function() {
-  this._submitSOAPRequestJSON();
-};
-
-zmJanitor.prototype._submitSOAPRequestJSON = function() {
-  /*var jsonObj = {GetAccountInfoRequest:{_jsns:"urn:zimbraAccount"}};*/
-  /*var request = jsonObj.GetAccountInfoRequest;*/
-  /*request.account = {_content: appCtxt.getUsername(), by: "name"};*/
-
-  var msgArray = appCtxt.getCurrentController().getList().getArray();
-  var messages = "";
-  for (var bob in msgArray) {
-    messages = messages + " " + bob;
-  }
-  appCtxt.getAppController().setStatusMsg(bob);
-};
-
 // Send AJAX request
 //   zimbra stores usernames with @domain, ldap stores them without
 //   the @... inconsistencies abound. ye be warned.
@@ -49,21 +32,6 @@ zmJanitor.prototype._submitSOAPRequestJSON = function() {
 //   the first line of output is old emails, second is old unreads
 //=================================================================+
 zmJanitor.prototype._rpcCallback = function(response) {
-  /*appCtxt.getAppController().setStatusMsg(response.success + "<br />" + response.text);*/
-
-  /*var style = DwtMessageDialog.INFO_STYLE;*/
-  /*var msg   = "Hello world!";*/
-
-  /*if (response.success) {*/
-  /*msg = response.text;*/
-  /*}*/
-  /*msg = msg + response.success;*/
-
-  /*this._dialog =  appCtxt.getMsgDialog();*/
-  /*this._dialog.reset();*/
-  /*this._dialog.setMessage(msg, style);*/
-  /*this._dialog.popup();*/
-
   var answer      = response.text.split("\n");
   var oldEmails   = answer[0];
   var oldUnreads  = answer[1];
@@ -74,30 +42,9 @@ zmJanitor.prototype._rpcCallback = function(response) {
     + "own PC some time this week.";
 
   var style = DwtMessageDialog.INFO_STYLE;
-  var msg   = "Hello world!";
-
-  if (response.success) {
-    msg = response.text;
-  }
-  alert(response.text);
 
   this._dialog =  appCtxt.getMsgDialog();
   this._dialog.reset();
   this._dialog.setMessage(message, style);
   this._dialog.popup();
-
-  var warningAnimation = [ZmToast.FADE_IN,
-      ZmToast.PAUSE,
-      ZmToast.PAUSE,
-      ZmToast.PAUSE,
-      ZmToast.PAUSE,
-      ZmToast.PAUSE,
-      ZmToast.PAUSE,
-      ZmToast.PAUSE,
-      ZmToast.PAUSE,
-      ZmToast.FADE_OUT];
-
-  if (oldEmails != "0" && oldUnreads != "0") {
-    appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);
-  }
 }
