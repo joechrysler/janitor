@@ -1,12 +1,8 @@
 Hi there!
 
-janitor is a simple zimlet written for Zimbra Collaboration Suite 6
+#janitor
+is a simple zimlet written for Zimbra Collaboration Suite 6
 that gives users a heads up a few weeks before a scheduled email
 cleaning session.  It looks for unread messages older than 90 days
 and all messages older than 365 days and tells the user how many of
 each they have.
-
-
-You'll need to add:
-  Configs for your zimbra setup
-  love
