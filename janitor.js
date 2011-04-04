@@ -12,7 +12,7 @@
   function zmJanitor() {} 
   zmJanitor.prototype               = new ZmZimletBase();
   zmJanitor.prototype.constructor   = zmJanitor;
-  zmJanitor.prototype.init          = function() { this._doJson(); };
+  zmJanitor.prototype.init          = function() { this._displayDialog(); };
 
 
 zmJanitor.prototype._doJson = function() {
