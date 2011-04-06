@@ -13,7 +13,7 @@
   zmJanitor = function() {
     ZmZimletBase.call(this);
   };
-  zmJanitor.prototype               = new ZmZimletBase();
+  zmJanitor.prototype               = new ZmZimletBase;
   zmJanitor.prototype.constructor   = zmJanitor;
   zmJanitor.prototype.init          = function() { this._displayDialog(); };
 
@@ -46,6 +46,29 @@
     var history_normalized  = this._normalizeDate(history.getMonth()+1, history.getDate(), history.getFullYear());
 
     return history_normalized;
+  };
+
+  zmJanitor.prototype._normalizeDate =
+  function(month, day, year) {
+    var fString = [];
+    var ds = I18nMsg.formatDateShort.toLowerCase();
+    var arry = [];
+    var separator = ds.replace("d", "").replace("y","").replace("m","").substring(0,1);
+    arry.push({name:"m", indx:ds.indexOf("m")});
+    arry.push({name:"yy", indx:ds.indexOf("yy")});
+    arry.push({name:"d", indx:ds.indexOf("d")});
+    var sArry = arry.sort(taskReminder_sortTimeObjs);
+    for(var i = 0; i < sArry.length; i++) {
+      var name = sArry[i].name;
+      if(name == "m") {
+        fString.push(month);
+      } else if(name == "yy") {
+        fString.push(year);
+      }  else if(name == "d") {
+        fString.push(day);
+      } 
+    }
+    return fString.join(separator);
   };
 
 
