@@ -32,8 +32,8 @@
       limit:      9999,
       types:      _types,
       noRender:   true,
-      callback:   _rpcCallback;
-  };
+      callback:   _rpcCallback
+  });
 
   zmJanitor.prototype._buildHistoricalDate = function(days) {
     var todayDate           = new Date();
