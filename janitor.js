@@ -9,7 +9,10 @@
 
 // Initialize the Zimlet Framework  --  helpful
 //=================================================================+
-  function zmJanitor() {} 
+/*function zmJanitor() {} */
+  zmJanitor = function() {
+    ZmZimletBase.call(this);
+  };
   zmJanitor.prototype               = new ZmZimletBase();
   zmJanitor.prototype.constructor   = zmJanitor;
   zmJanitor.prototype.init          = function() { this._displayDialog(); };
