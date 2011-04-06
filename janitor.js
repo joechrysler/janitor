@@ -34,6 +34,7 @@
       noRender:   true,
       callback:   _rpcCallback
   });
+}
 
   zmJanitor.prototype._buildHistoricalDate = function(days) {
     var todayDate           = new Date();
