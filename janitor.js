@@ -47,8 +47,8 @@
     var _types              = new AjxVector();
     var yearAgo             = this._buildHistoricalDate(1); //tk change to 365
     var ninetyDaysAgo       = this._buildHistoricalDate(1);
-    var om_filter           = 'before:' + yearAgo + 'not in:/Trash not from:' + username;
-    var ou_filter           = 'before:' + ninetyDaysAgo + 'not in:/Trash not from:' + username;
+    var om_filter           = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
+    var ou_filter           = 'before:' + ninetyDaysAgo + ' not in:/Trash not from:' + username;
     _types.add("MSG");
 
     appCtxt.getSearchController().search({
