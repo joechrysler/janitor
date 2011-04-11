@@ -24,24 +24,6 @@
 //   zimbra stores usernames with @domain, ldap stores them without
 //   the @... inconsistencies abound. ye be warned.
 //=================================================================+
-  zmJanitor.prototype.displayDialog = function() {
-    var username        = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
-    var callbck         = new AjxCallback(this, this._rpcCallback);
-    var _types          = new AjxVector();
-    var yearAgo         = this._buildHistoricalDate(1); //tk change to 365 //tk change to 365
-    var ninetyDaysAgo   = this._buildHistoricalDate(90);
-    _types.add("MSG");
-
-    appCtxt.getSearchController().search({
-      query:      'before:' + yearAgo + ' not from:' + username,
-      userText:   true,
-      limit:      9999,
-      types:      _types,
-      noRender:   false,
-      callback:   callbck
-  });
-}
-
   zmJanitor.prototype.findOldMessages = function() {
     var username            = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
     var om_callback         = new AjxCallback(this, this._om_handler);
@@ -71,7 +53,7 @@
       callback:   ou_callback
     });
 
-    setTimeout(function(thisObj) {thisObj._alert();}, 10000, this);
+    setTimeout(function(thisObj) {thisObj._displayWarning();}, 15000, this);
   };
 
   zmJanitor.prototype._buildHistoricalDate = function(days) {
@@ -83,8 +65,28 @@
     return history_normalized;
   };
 
-  zmJanitor.prototype._alert = function() {
-    alert(window.om_count + ' and ' + window.ou_count);
+  zmJanitor.prototype._displayWarning = function() {
+    var warningMessage = "You have " + window.om_count + " emails that are almost a year old.<br />"
+                       + "and " + window.ou_count + " unread emails that are almost 3 months old.<br />"
+                       + "To conserve space, we will be automatically deleting these messages<br />"
+                       + "within the next couple of weeks.  Save any important messages to your<br />"
+                       + "own PC some time this week.";
+
+    var warningAnimation = [ZmToast.FADE_IN,
+                            ZmToast.PAUSE,
+                            ZmToast.PAUSE,
+                            ZmToast.PAUSE,
+                            ZmToast.PAUSE,
+                            ZmToast.PAUSE,
+                            ZmToast.PAUSE,
+                            ZmToast.PAUSE,
+                            ZmToast.PAUSE,
+                            ZmToast.FADE_OUT];
+
+    if (window.ou_count > 0 && window.om_count > 0) {
+      appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);
+    }
+    
   };
 
   zmJanitor.prototype._normalizeDate =
