@@ -28,7 +28,7 @@
     var _types          = new AjxVector();
     var yearAgo         = this._buildHistoricalDate(365);
     var ninetyDaysAgo   = this._buildHistoricalDate(90);
-    _types.add("MESSAGE");
+    _types.add("MAIL");
 
     appCtxt.getSearchController().search({
       query:      'before:' + yearAgo,
