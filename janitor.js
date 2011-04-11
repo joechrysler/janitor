@@ -71,7 +71,7 @@
       callback:   ou_callback
     });
 
-    alert(om_count + ou_count);
+    alert(om_count + ' and ' + ou_count);
   };
 
   zmJanitor.prototype._buildHistoricalDate = function(days) {
