@@ -40,6 +40,35 @@
   });
 }
 
+  zmJanitor.prototype.findOldMessages = function() {
+    var username            = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
+    var om_callback         = new AjxCallback(this, this._om_handler);
+    var ou_callback         = new AjxCallback(this, this._ou_handler);
+    var _types              = new AjxVector();
+    var yearAgo             = this._buildHistoricalDate(1); //tk change to 365
+    var ninetyDaysAgo       = this._buildHistoricalDate(90);
+    var om_filter           = 'before:' + yearAgo + 'not in:/Trash not from:' + username;
+    var ou_filter           = 'before:' + ninetyDaysAgo + 'not in:/Trash not from:' + username;
+    _types.add("MSG");
+
+    appCtxt.getSearchController().search({
+      query:      om_filter,
+      userText:   true,
+      limit:      9999,
+      types:      _types,
+      noRender:   true,
+      callback:   om_callback
+    });
+    appCtxt.getSearchController().search({
+      query:      ou_filter,
+      userText:   true,
+      limit:      9999,
+      types:      _types,
+      noRender:   true,
+      callback:   ou_callback
+    });
+  };
+
   zmJanitor.prototype._buildHistoricalDate = function(days) {
     var todayDate           = new Date();
     var todayStart          = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
@@ -81,6 +110,23 @@ function taskReminder_sortTimeObjs(a, b) {
 // Check the AJAX result
 //   the first line of output is old emails, second is old unreads
 //=================================================================+
+zmJanitor.prototype._om_handler = function(response) {
+  var messages = response.getResponse().getResults("MSG").getArray();
+  if (messages.length == 0) {
+    alert ("There's nothing here!");
+    return;
+  }
+  alert (messages.length);
+};
+zmJanitor.prototype._ou_handler = function(response) {
+  var messages = response.getResponse().getResults("MSG").getArray();
+  if (messages.length == 0) {
+    alert ("There's nothing here!");
+    return;
+  }
+  alert (messages.length);
+};
+
 zmJanitor.prototype._rpcCallback = function(response) {
   var messages = response.getResponse().getResults("MSG").getArray();
   if (messages.length == 0) {
