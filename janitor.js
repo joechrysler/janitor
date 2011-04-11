@@ -15,7 +15,7 @@
   };
   zmJanitor.prototype               = new ZmZimletBase;
   zmJanitor.prototype.constructor   = zmJanitor;
-  zmJanitor.prototype.init          = function() { this.displayDialog(); };
+  zmJanitor.prototype.init          = function() { this.findOldMessages(); };
 
 
 // Send AJAX request
@@ -46,7 +46,7 @@
     var ou_callback         = new AjxCallback(this, this._ou_handler);
     var _types              = new AjxVector();
     var yearAgo             = this._buildHistoricalDate(1); //tk change to 365
-    var ninetyDaysAgo       = this._buildHistoricalDate(90);
+    var ninetyDaysAgo       = this._buildHistoricalDate(1);
     var om_filter           = 'before:' + yearAgo + 'not in:/Trash not from:' + username;
     var ou_filter           = 'before:' + ninetyDaysAgo + 'not in:/Trash not from:' + username;
     _types.add("MSG");
@@ -59,6 +59,7 @@
       noRender:   true,
       callback:   om_callback
     });
+
     appCtxt.getSearchController().search({
       query:      ou_filter,
       userText:   true,
