@@ -25,7 +25,7 @@
 //   the @... inconsistencies abound. ye be warned.
 //=================================================================+
   zmJanitor.prototype.findOldMessages = function() {
-    var username            = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
+    var username            = appCtxt.get(ZmSetting.USERNAME);
     var om_callback         = new AjxCallback(this, this._om_handler);
     var ou_callback         = new AjxCallback(this, this._ou_handler);
     var _types              = new AjxVector();
@@ -56,15 +56,6 @@
     setTimeout(function(thisObj) {thisObj._displayWarning();}, 15000, this);
   };
 
-  zmJanitor.prototype._buildHistoricalDate = function(days) {
-    var todayDate           = new Date();
-    var todayStart          = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
-    var history             = new Date(todayStart.getTime() - (days * 24 * 3600 * 1000));
-    var history_normalized  = this._normalizeDate(history.getMonth()+1, history.getDate(), history.getFullYear());
-
-    return history_normalized;
-  };
-
   zmJanitor.prototype._displayWarning = function() {
     if (window.om_count > 1000)
       window.om_count = 'a whole lot of';
@@ -89,14 +80,35 @@
                             ZmToast.PAUSE,
                             ZmToast.FADE_OUT];
 
-    if (window.ou_count > 0 && window.om_count > 0) {
+    if (window.ou_count > 0 && window.om_count > 0)
       appCtxt.getAppController().setStatusMsg(warningMessage, ZmStatusView.LEVEL_CRITICAL, null, warningAnimation);
-    }
-    
   };
 
-  zmJanitor.prototype._normalizeDate =
-  function(month, day, year) {
+
+// Handle Ajax Responses
+//=================================================================+
+  zmJanitor.prototype._om_handler = function(response) {
+    var messages = response.getResponse().getResults("MSG").getArray();
+    window.om_count = messages.length;
+  };
+  zmJanitor.prototype._ou_handler = function(response) {
+    var messages = response.getResponse().getResults("MSG").getArray();
+    window.ou_count = messages.length;
+  };
+
+
+// Extra Functions
+//=================================================================+
+  zmJanitor.prototype._buildHistoricalDate = function(days) {
+    var todayDate           = new Date();
+    var todayStart          = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+    var history             = new Date(todayStart.getTime() - (days * 24 * 3600 * 1000));
+    var history_normalized  = this._normalizeDate(history.getMonth()+1, history.getDate(), history.getFullYear());
+
+    return history_normalized;
+  };
+
+  zmJanitor.prototype._normalizeDate = function(month, day, year) {
     var fString = [];
     var ds = I18nMsg.formatDateShort.toLowerCase();
     var arry = [];
@@ -118,52 +130,8 @@
     return fString.join(separator);
   };
 
-function taskReminder_sortTimeObjs(a, b) {
-	var x = parseInt(a.indx);
-	var y = parseInt(b.indx);
-	return ((x > y) ? 1 : ((x < y) ? -1 : 0));
-}
-
-// Check the AJAX result
-//   the first line of output is old emails, second is old unreads
-//=================================================================+
-zmJanitor.prototype._om_handler = function(response) {
-  var messages = response.getResponse().getResults("MSG").getArray();
-  if (messages.length == 0) {
-    alert ("There's nothing here!");
-    return;
+  function taskReminder_sortTimeObjs(a, b) {
+    var x = parseInt(a.indx);
+    var y = parseInt(b.indx);
+    return ((x > y) ? 1 : ((x < y) ? -1 : 0));
   }
-  window.om_count = messages.length;
-};
-zmJanitor.prototype._ou_handler = function(response) {
-  var messages = response.getResponse().getResults("MSG").getArray();
-  if (messages.length == 0) {
-    alert ("There's nothing here!");
-    return;
-  }
-  window.ou_count = messages.length;
-};
-
-zmJanitor.prototype._rpcCallback = function(response) {
-  var messages = response.getResponse().getResults("MSG").getArray();
-  if (messages.length == 0) {
-    alert ("There's nothing here!");
-    return;
-  }
-  alert (messages.length);
-  /*var answer      = response.text.split("\n");*/
-  /*var oldEmails   = answer[0];*/
-  /*var oldUnreads  = answer[1];*/
-  /*var message     = "You have " + oldEmails + " emails that are almost a year old.<br />"*/
-  /*+ "and " + oldUnreads + " unread emails that are almost 3 months old.<br />"*/
-  /*+ "To conserve space, we will be automatically deleting these messages<br />"*/
-  /*+ "within the next couple of weeks.  Save any important messages to your<br />"*/
-  /*+ "own PC some time this week.";*/
-
-  /*var style = DwtMessageDialog.INFO_STYLE;*/
-
-  /*this._dialog =  appCtxt.getMsgDialog();*/
-  /*this._dialog.reset();*/
-  /*this._dialog.setMessage(message, style);*/
-  /*this._dialog.popup();*/
-}
