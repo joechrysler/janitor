@@ -25,7 +25,7 @@
   zmJanitor.prototype.displayDialog = function() {
     var username        = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
     var callbck         = new AjxCallback(this, this._rpcCallback);
-    /*var _types          = new AjxVector();*/
+    var _types          = new AjxVector();
     var yearAgo         = this._buildHistoricalDate(1); //tk change to 365 //tk change to 365
     var ninetyDaysAgo   = this._buildHistoricalDate(90);
     _types.add("MSG");
