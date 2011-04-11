@@ -71,7 +71,7 @@
       callback:   ou_callback
     });
 
-    setTimeout(function() {this._alert();}, 10000);
+    setTimeout(function(thisObj) {thisObj._alert();}, 10000);
   };
 
   zmJanitor.prototype._buildHistoricalDate = function(days) {
