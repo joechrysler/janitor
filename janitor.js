@@ -66,6 +66,12 @@
   };
 
   zmJanitor.prototype._displayWarning = function() {
+    if (window.om_count > 1000)
+      window.om_count = 'a whole lot of';
+    if (window.ou_count > 1000)
+      window.ou_count = 'a whole lot of';
+
+
     var warningMessage = "You have " + window.om_count + " emails that are almost a year old.<br />"
                        + "and " + window.ou_count + " unread emails that are almost 3 months old.<br />"
                        + "To conserve space, we will be automatically deleting these messages<br />"
