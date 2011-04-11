@@ -71,6 +71,11 @@
     return fString.join(separator);
   };
 
+function taskReminder_sortTimeObjs(a, b) {
+	var x = parseInt(a.indx);
+	var y = parseInt(b.indx);
+	return ((x > y) ? 1 : ((x < y) ? -1 : 0));
+}
 
 // Check the AJAX result
 //   the first line of output is old emails, second is old unreads
