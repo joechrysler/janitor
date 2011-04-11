@@ -28,13 +28,13 @@
     /*var _types          = new AjxVector();*/
     var yearAgo         = this._buildHistoricalDate(1); //tk change to 365 //tk change to 365
     var ninetyDaysAgo   = this._buildHistoricalDate(90);
-    /*_types.add("MAIL");*/
+    _types.add("MSG");
 
     appCtxt.getSearchController().search({
       query:      'before:' + yearAgo + ' not from:' + username,
       userText:   true,
       limit:      9999,
-      /*types:      _types,*/
+      types:      _types,
       noRender:   false,
       callback:   callbck
   });
