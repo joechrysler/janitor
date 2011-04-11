@@ -48,6 +48,8 @@
     var yearAgo             = this._buildHistoricalDate(1); //tk change to 365
     var ninetyDaysAgo       = this._buildHistoricalDate(1);
     var om_filter           = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
+    window.om_count         = 0;
+    window.ou_count         = 0;
     var ou_filter           = 'is:unread before:' + ninetyDaysAgo + ' not in:/Trash not from:' + username;
     _types.add("MSG");
 
@@ -68,6 +70,8 @@
       noRender:   true,
       callback:   ou_callback
     });
+
+    alert(om_count + ou_count);
   };
 
   zmJanitor.prototype._buildHistoricalDate = function(days) {
@@ -114,18 +118,16 @@ function taskReminder_sortTimeObjs(a, b) {
 zmJanitor.prototype._om_handler = function(response) {
   var messages = response.getResponse().getResults("MSG").getArray();
   if (messages.length == 0) {
-    alert ("There's nothing here!");
     return;
   }
-  alert (messages.length);
+  window.om_count = messages.length);
 };
 zmJanitor.prototype._ou_handler = function(response) {
   var messages = response.getResponse().getResults("MSG").getArray();
   if (messages.length == 0) {
-    alert ("There's nothing here!");
     return;
   }
-  alert (messages.length);
+  window.ou_count = messages.length);
 };
 
 zmJanitor.prototype._rpcCallback = function(response) {
