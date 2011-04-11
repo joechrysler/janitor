@@ -82,7 +82,8 @@ function taskReminder_sortTimeObjs(a, b) {
 //   the first line of output is old emails, second is old unreads
 //=================================================================+
 zmJanitor.prototype._rpcCallback = function(response) {
-  alert (response.text);
+  var messages = response.getResponse().getResults("MESSAGE").getArray();
+  alert (messages);
   /*var answer      = response.text.split("\n");*/
   /*var oldEmails   = answer[0];*/
   /*var oldUnreads  = answer[1];*/
