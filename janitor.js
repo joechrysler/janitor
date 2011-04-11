@@ -24,6 +24,7 @@
 //=================================================================+
   zmJanitor.prototype.displayDialog = function() {
     var username        = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
+    var callbck         = new AjxCallback(this, this._rpcCallback);
     var _types          = new AjxVector();
     var yearAgo         = this._buildHistoricalDate(365);
     var ninetyDaysAgo   = this._buildHistoricalDate(90);
@@ -35,7 +36,7 @@
       limit:      9999,
       types:      _types,
       noRender:   true,
-      callback:   _rpcCallback
+      callback:   callbck
   });
 }
 
