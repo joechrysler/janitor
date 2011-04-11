@@ -35,7 +35,7 @@
       userText:   true,
       limit:      9999,
       /*types:      _types,*/
-      noRender:   true,
+      noRender:   false,
       callback:   callbck
   });
 }
