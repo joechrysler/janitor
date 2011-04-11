@@ -121,7 +121,7 @@ zmJanitor.prototype._om_handler = function(response) {
     alert ("There's nothing here!");
     return;
   }
-  window.om_count = messages.length);
+  window.om_count = messages.length;
 };
 zmJanitor.prototype._ou_handler = function(response) {
   var messages = response.getResponse().getResults("MSG").getArray();
@@ -129,7 +129,7 @@ zmJanitor.prototype._ou_handler = function(response) {
     alert ("There's nothing here!");
     return;
   }
-  window.ou_count = messages.length);
+  window.ou_count = messages.length;
 };
 
 zmJanitor.prototype._rpcCallback = function(response) {
