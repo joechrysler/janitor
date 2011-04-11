@@ -1,4 +1,6 @@
 
+    window.om_count         = 0;
+    window.ou_count         = 0;
 //=================================================================+
 // Alert users if they have old email that will be purged
 //   by  Joe Chrysler
@@ -48,8 +50,6 @@
     var yearAgo             = this._buildHistoricalDate(1); //tk change to 365
     var ninetyDaysAgo       = this._buildHistoricalDate(1);
     var om_filter           = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
-    window.om_count         = 0;
-    window.ou_count         = 0;
     var ou_filter           = 'is:unread before:' + ninetyDaysAgo + ' not in:/Trash not from:' + username;
     _types.add("MSG");
 
@@ -71,7 +71,7 @@
       callback:   ou_callback
     });
 
-    setTimeout(alert(window.om_count + ' and ' + window.ou_count), 10*10000);
+    setTimeout(this._alert(), 10000);
   };
 
   zmJanitor.prototype._buildHistoricalDate = function(days) {
@@ -81,6 +81,10 @@
     var history_normalized  = this._normalizeDate(history.getMonth()+1, history.getDate(), history.getFullYear());
 
     return history_normalized;
+  };
+
+  zmJanitor.prototype._alert = function() {
+    alert(window.om_count + ' and ' + window.ou_count);
   };
 
   zmJanitor.prototype._normalizeDate =
