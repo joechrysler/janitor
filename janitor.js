@@ -25,16 +25,16 @@
   zmJanitor.prototype.displayDialog = function() {
     var username        = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
     var callbck         = new AjxCallback(this, this._rpcCallback);
-    var _types          = new AjxVector();
+    /*var _types          = new AjxVector();*/
     var yearAgo         = this._buildHistoricalDate(365);
     var ninetyDaysAgo   = this._buildHistoricalDate(90);
-    _types.add("MAIL");
+    /*_types.add("MAIL");*/
 
     appCtxt.getSearchController().search({
       query:      'before:' + yearAgo,
       userText:   true,
       limit:      9999,
-      types:      _types,
+      /*types:      _types,*/
       noRender:   true,
       callback:   callbck
   });
