@@ -83,7 +83,17 @@ function taskReminder_sortTimeObjs(a, b) {
 //=================================================================+
 zmJanitor.prototype._rpcCallback = function(response) {
   var messages = response.getResponse().getResults("MSG").getArray();
-  alert (messages);
+  if (messages.length == 0) {
+    alert ("There's nothing here!");
+    return;
+  }
+  var messageObjects = new Array();
+  var tmp = new Date();
+  var showReminder = false;
+  var today = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate());
+  for (var i=0; i < messages.length; i++) {
+    alert("Hello\n" + messages[i]);
+  }
   /*var answer      = response.text.split("\n");*/
   /*var oldEmails   = answer[0];*/
   /*var oldUnreads  = answer[1];*/
