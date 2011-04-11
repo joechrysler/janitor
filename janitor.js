@@ -37,7 +37,7 @@
 
     appCtxt.getSearchController().search({
       query:      om_filter,
-      userText:   true,
+      userText:   false,
       limit:      9999,
       types:      _types,
       noRender:   true,
@@ -46,7 +46,7 @@
 
     appCtxt.getSearchController().search({
       query:      ou_filter,
-      userText:   true,
+      userText:   false,
       limit:      9999,
       types:      _types,
       noRender:   true,
