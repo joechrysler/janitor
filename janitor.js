@@ -66,7 +66,7 @@
 
     // Both queries take a little bit of time, so we have to wait a bit before
     // showing the warning message
-    setTimeout(function(thisObj) {thisObj._displayWarning();}, 3000, this);
+    setTimeout(function(thisObj) {thisObj._displayWarning();}, 5000, this);
   };
 
 
