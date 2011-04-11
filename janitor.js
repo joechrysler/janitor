@@ -1,17 +1,19 @@
-
-    window.om_count         = 0;
-    window.ou_count         = 0;
 //=================================================================+
 // Alert users if they have old email that will be purged
 //   by  Joe Chrysler
 //   for Dennis Hughes
 //   @   Saginaw Valley State University
-//   in  March 2011
+//   in  April 2011
 //=================================================================+
+
+// Global Counters  --  what was he thinking?
+//=================================================================+
+    window.om_count         = 0;
+    window.ou_count         = 0;
+
 
 // Initialize the Zimlet Framework  --  helpful
 //=================================================================+
-/*function zmJanitor() {} */
   zmJanitor = function() {
     ZmZimletBase.call(this);
   };
@@ -20,21 +22,20 @@
   zmJanitor.prototype.init          = function() { this.findOldMessages(); };
 
 
-// Send AJAX request
-//   zimbra stores usernames with @domain, ldap stores them without
-//   the @... inconsistencies abound. ye be warned.
+// Send AJAX request  --  like a high tech carrier pigeon
 //=================================================================+
   zmJanitor.prototype.findOldMessages = function() {
-    var username            = appCtxt.get(ZmSetting.USERNAME);
-    var om_callback         = new AjxCallback(this, this._om_handler);
-    var ou_callback         = new AjxCallback(this, this._ou_handler);
     var _types              = new AjxVector();
-    var yearAgo             = this._buildHistoricalDate(1); //tk change to 365
-    var ninetyDaysAgo       = this._buildHistoricalDate(1);
+    var ninetyDaysAgo       = this._buildHistoricalDate(1); //tk change to 365
+    var om_callback         = new AjxCallback(this, this._om_handler);
     var om_filter           = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
+    var ou_callback         = new AjxCallback(this, this._ou_handler);
     var ou_filter           = 'is:unread before:' + ninetyDaysAgo + ' not in:/Trash not from:' + username;
+    var username            = appCtxt.get(ZmSetting.USERNAME);
+    var yearAgo             = this._buildHistoricalDate(1); //tk change to 365
     _types.add("MSG");
 
+    // Search for old messages
     appCtxt.getSearchController().search({
       query:      om_filter,
       userText:   false,
@@ -44,6 +45,7 @@
       callback:   om_callback
     });
 
+    // Search for old unreads
     appCtxt.getSearchController().search({
       query:      ou_filter,
       userText:   false,
@@ -53,9 +55,13 @@
       callback:   ou_callback
     });
 
+    // Both queries take a little bit of time, so we have to wait a bit before
+    // showing the warning message
     setTimeout(function(thisObj) {thisObj._displayWarning();}, 15000, this);
   };
 
+
+// Warn the User  --  softly, but wielding a large stick
   zmJanitor.prototype._displayWarning = function() {
     if (window.om_count > 1000)
       window.om_count = 'a whole lot of';
@@ -97,7 +103,7 @@
   };
 
 
-// Extra Functions
+// Extra Functions  --  tireless helpers who get no thanks at all
 //=================================================================+
   zmJanitor.prototype._buildHistoricalDate = function(days) {
     var todayDate           = new Date();
