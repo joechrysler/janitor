@@ -15,14 +15,14 @@
   };
   zmJanitor.prototype               = new ZmZimletBase;
   zmJanitor.prototype.constructor   = zmJanitor;
-  zmJanitor.prototype.init          = function() { this._displayDialog(); };
+  zmJanitor.prototype.init          = function() { this.displayDialog(); };
 
 
 // Send AJAX request
 //   zimbra stores usernames with @domain, ldap stores them without
 //   the @... inconsistencies abound. ye be warned.
 //=================================================================+
-  zmJanitor.prototype._displayDialog = function() {
+  zmJanitor.prototype.displayDialog = function() {
     var username        = appCtxt.get(ZmSetting.USERNAME).split("@")[0];
     var _types          = AjxVector();
     var yearAgo         = this._buildHistoricalDate(365);
