@@ -23,17 +23,26 @@
 
 
 // Send AJAX request  --  like a high tech carrier pigeon
+//  om = old messages
+//  ou = old unreads
 //=================================================================+
   zmJanitor.prototype.findOldMessages = function() {
-    var _types              = new AjxVector();
-    var ninetyDaysAgo       = this._buildHistoricalDate(1); //tk change to 365
-    var om_callback         = new AjxCallback(this, this._om_handler);
-    var om_filter           = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
-    var ou_callback         = new AjxCallback(this, this._ou_handler);
-    var ou_filter           = 'is:unread before:' + ninetyDaysAgo + ' not in:/Trash not from:' + username;
-    var username            = appCtxt.get(ZmSetting.USERNAME);
-    var yearAgo             = this._buildHistoricalDate(1); //tk change to 365
+    var _types        = new AjxVector();
+    var username      = appCtxt.get(ZmSetting.USERNAME);
     _types.add("MSG");
+
+    // Pertinent dates
+    var yearAgo       = this._buildHistoricalDate(1); //tk change to 365
+    var ninetyDaysAgo = this._buildHistoricalDate(1); //tk change to 365
+    
+    // Search Queries
+    var om_filter     = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
+    var ou_filter     = 'is:unread before:' + ninetyDaysAgo + ' not in:/Trash not from:' + username;
+
+    // Ajax callbacks
+    var om_callback   = new AjxCallback(this, this._om_handler);
+    var ou_callback   = new AjxCallback(this, this._ou_handler);
+
 
     // Search for old messages
     appCtxt.getSearchController().search({
