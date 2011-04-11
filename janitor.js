@@ -75,7 +75,7 @@
     var warningMessage = "You have " + window.om_count + " emails that are almost a year old.<br />"
                        + "and " + window.ou_count + " unread emails that are almost 3 months old.<br />"
                        + "To conserve space, we will be automatically deleting these messages<br />"
-                       + "within the next couple of weeks.  Save any important messages to your<br />"
+                       + "within the next couple of weeks.<br /><br />Save any important messages to your "
                        + "own PC some time this week.";
 
     var warningAnimation = [ZmToast.FADE_IN,
