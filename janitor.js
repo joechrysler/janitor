@@ -32,8 +32,8 @@
     _types.add("MSG");
 
     // Pertinent dates
-    var yearAgo       = this._buildHistoricalDate(1); //tk change to 365
-    var ninetyDaysAgo = this._buildHistoricalDate(1); //tk change to 365
+    var yearAgo       = this._buildHistoricalDate(365);
+    var ninetyDaysAgo = this._buildHistoricalDate(90);
     
     // Search Queries
     var om_filter     = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
