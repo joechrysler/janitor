@@ -32,8 +32,8 @@
     _types.add("MSG");
 
     // Pertinent dates
-    var yearAgo       = this._buildHistoricalDate(365);
-    var ninetyDaysAgo = this._buildHistoricalDate(90);
+    var om_oldness    = '365day';
+    var ou_oldness    = '90day';
     
     // Search Queries
     var om_filter     = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
@@ -110,43 +110,3 @@
     var messages = response.getResponse().getResults("MSG").getArray();
     window.ou_count = messages.length;
   };
-
-
-// Extra Functions  --  tireless helpers who get no thanks at all
-//=================================================================+
-  zmJanitor.prototype._buildHistoricalDate = function(days) {
-    var todayDate           = new Date();
-    var todayStart          = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
-    var history             = new Date(todayStart.getTime() - (days * 24 * 3600 * 1000));
-    var history_normalized  = this._normalizeDate(history.getMonth()+1, history.getDate(), history.getFullYear());
-
-    return history_normalized;
-  };
-
-  zmJanitor.prototype._normalizeDate = function(month, day, year) {
-    var fString = [];
-    var ds = I18nMsg.formatDateShort.toLowerCase();
-    var arry = [];
-    var separator = ds.replace("d", "").replace("y","").replace("m","").substring(0,1);
-    arry.push({name:"m", indx:ds.indexOf("m")});
-    arry.push({name:"yy", indx:ds.indexOf("yy")});
-    arry.push({name:"d", indx:ds.indexOf("d")});
-    var sArry = arry.sort(taskReminder_sortTimeObjs);
-    for(var i = 0; i < sArry.length; i++) {
-      var name = sArry[i].name;
-      if(name == "m") {
-        fString.push(month);
-      } else if(name == "yy") {
-        fString.push(year);
-      }  else if(name == "d") {
-        fString.push(day);
-      } 
-    }
-    return fString.join(separator);
-  };
-
-  function taskReminder_sortTimeObjs(a, b) {
-    var x = parseInt(a.indx);
-    var y = parseInt(b.indx);
-    return ((x > y) ? 1 : ((x < y) ? -1 : 0));
-  }
