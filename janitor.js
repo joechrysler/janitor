@@ -36,8 +36,8 @@
     var ou_oldness    = '90day';
     
     // Search Queries
-    var om_filter     = 'before:' + yearAgo + ' not in:/Trash not from:' + username;
-    var ou_filter     = 'is:unread before:' + ninetyDaysAgo + ' not in:/Trash not from:' + username;
+    var om_filter     = 'date:<=-' + om_oldness + ' not in:/Trash not from:' + username;
+    var ou_filter     = 'is:unread date:<=-' + ou_oldness + ' not in:/Trash not from:' + username;
 
     // Ajax callbacks
     var om_callback   = new AjxCallback(this, this._om_handler);
